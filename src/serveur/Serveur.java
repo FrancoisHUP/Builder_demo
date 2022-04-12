@@ -1,4 +1,4 @@
-package Serveur;
+package serveur;
 
 import personnel.Personnel;
 
@@ -25,9 +25,6 @@ public class Serveur {
     public Data getData(String nomTable,UniqId uniqId) throws TableNotFound, RowNotFound {
         if(collections.containsKey(nomTable)) {
             if(collections.get(nomTable).containsKey(uniqId)) {
-                //System.out.println(uniqId);
-                //System.out.println("contains : " + collections.get(nomTable).containsKey(uniqId));
-                //System.out.println("Table : " + collections.get(nomTable));
                 return collections.get(nomTable).get(uniqId);
             }
             throw new RowNotFound();

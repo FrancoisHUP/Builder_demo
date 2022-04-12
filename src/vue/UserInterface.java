@@ -1,8 +1,8 @@
 package vue;
 
-import Serveur.Serveur;
-import Serveur.Data;
-import Serveur.UniqId;
+import serveur.Serveur;
+import serveur.Data;
+import serveur.UniqId;
 import personnel.*;
 import utils.Paire;
 
@@ -88,7 +88,6 @@ public class UserInterface extends JFrame {
             if(evt.getValueIsAdjusting()) {
                 // utilisation du singleton pour les appels au serveur
                 Data personnelData = null;
-                System.out.println(jList.getSelectedIndex());
                 Paire<Integer,UniqId> paire = uniqIds.get(jList.getSelectedIndex());
                 UniqId uniqId = paire.second;
                 try {
@@ -133,6 +132,7 @@ public class UserInterface extends JFrame {
             UniqId uniqId = new UniqId(personnel.getNom());
 
             Serveur.getInstance().setDoc("patient",uniqId,personnel);
+
             uniqIds.add(new Paire<>(jList.getModel().getSize(),uniqId));
             model.addElement(uniqId.getNom());
 
@@ -144,8 +144,6 @@ public class UserInterface extends JFrame {
     }
 
     private void buildDialogFichePatient(UniqId uniqId,Data patientData) {
-
-        // TODO afficher les donnees du patient avec les champs a modifier, faire le builder, finir la classe uniqid
         jDialog = new JDialog(this,"Patient " + uniqId.getNom());
         jDialog.setBounds(400, 300,300,300);
         jDialog.setLayout(null);
@@ -191,7 +189,7 @@ public class UserInterface extends JFrame {
             jDialog.dispose();
         });
         jDialog.add(jButton);
-        JLabel jLabelNomAffichage = new JLabel("Oups lemployer na pas ete trouve !");
+        JLabel jLabelNomAffichage = new JLabel("Oups l employer n a pas ete trouve !");
         jLabelNomAffichage.setBounds(10,10,300,25);
     }
 

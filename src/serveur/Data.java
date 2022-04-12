@@ -1,16 +1,16 @@
-package Serveur;
+package serveur;
 
 import java.util.HashMap;
 
-public class Data<k,v> {
+public class Data<K, V> {
 
-    private HashMap<k,v> data = new HashMap<>();
+    private HashMap<K, V> data = new HashMap<>();
 
-    public void setKeyValue(k key,v value){
+    public void setKeyValue(K key, V value){
         this.data.put(key, value);
     }
 
-    public v getValueOfkey(k key) {
+    public V getValueOfkey(K key) {
         return data.get(key);
     }
 

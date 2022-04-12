@@ -1,7 +1,6 @@
-package App;
+package app;
 
-import Serveur.Serveur;
-import personnel.*;
+import serveur.Serveur;
 import vue.UserInterface;
 
 public class App {

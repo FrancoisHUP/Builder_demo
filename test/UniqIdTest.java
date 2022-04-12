@@ -1,4 +1,4 @@
-import Serveur.UniqId;
+import serveur.UniqId;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

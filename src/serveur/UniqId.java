@@ -1,10 +1,9 @@
-package Serveur;
+package serveur;
 
 import java.util.Objects;
 import java.util.Random;
 import static java.lang.Math.abs;
 
-// encode base64?
 public class UniqId implements Comparable{
 
     private String uniqId;
@@ -26,16 +25,8 @@ public class UniqId implements Comparable{
         return uniqId;
     }
 
-    public UniqId getUniId() {
-        return this;
-    }
-
     public String getNom() {
         return nom;
-    }
-
-    public String getUniqId() {
-        return uniqId;
     }
 
     @Override
