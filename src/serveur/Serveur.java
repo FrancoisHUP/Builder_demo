@@ -37,8 +37,8 @@ public class Serveur {
     }
 
     public void setDoc(String nomTable, UniqId uniqId, Personnel personnel) {
-        Data dataPeronnel = personnel.toData();
-        collections.get(nomTable).put(uniqId,dataPeronnel);
+        Data dataPersonnel = personnel.toData();
+        collections.get(nomTable).put(uniqId,dataPersonnel);
     }
 
     public class TableNotFound extends Exception {

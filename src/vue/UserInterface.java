@@ -46,13 +46,13 @@ public class UserInterface extends JFrame {
     }
 
     private void buildLabels(JPanel jPanel) {
-        jLabel = new JLabel("Ajout Medecin");
+        jLabel = new JLabel("Ajout medecin");
         jLabel.setBounds(10,10,200,30);
         jPanel.add(jLabel);
         jLabel = new JLabel("Ajoute infirmiere");
         jLabel.setBounds(10,50,200,30);
         jPanel.add(jLabel);
-        jLabel = new JLabel("Ajouter une Receptionniste");
+        jLabel = new JLabel("Ajouter receptionniste");
         jLabel.setBounds(10,90,200,30);
         jPanel.add(jLabel);
     }
@@ -91,24 +91,24 @@ public class UserInterface extends JFrame {
                 Paire<Integer,UniqId> paire = uniqIds.get(jList.getSelectedIndex());
                 UniqId uniqId = paire.second;
                 try {
-                    personnelData = Serveur.getInstance().getData("patient",uniqId);
+                    personnelData = Serveur.getInstance().getData("personnel",uniqId);
                 } catch (Serveur.TableNotFound | Serveur.RowNotFound e) {
                     System.err.println(e.getMessage());
                     buildFenetreErr();
                 }
-                buildDialogFichePatient(uniqId,personnelData);
+                buildDialogFichePersonnel(uniqId,personnelData);
             }
         });
         jPanel.add(scrollPane);
     }
 
     private void buildDialogAddPersonnel(Emploie emploie) {
-        jDialog = new JDialog(this, "Add Patient");
+        jDialog = new JDialog(this, "Add Personnel");
         int height = 135;
         jDialog.setBounds(500, 400,250,height);
         jDialog.setLayout(null);
         //label
-        JLabel jLabel = new JLabel("Nom patient");
+        JLabel jLabel = new JLabel("Nom personnel");
         jLabel.setBounds(10,10,100,25);
         jDialog.add(jLabel);
         //field
@@ -131,7 +131,7 @@ public class UserInterface extends JFrame {
             // mettre les infos du personnel dans le serveur
             UniqId uniqId = new UniqId(personnel.getNom());
 
-            Serveur.getInstance().setDoc("patient",uniqId,personnel);
+            Serveur.getInstance().setDoc("personnel",uniqId,personnel);
 
             uniqIds.add(new Paire<>(jList.getModel().getSize(),uniqId));
             model.addElement(uniqId.getNom());
@@ -143,8 +143,8 @@ public class UserInterface extends JFrame {
 
     }
 
-    private void buildDialogFichePatient(UniqId uniqId,Data patientData) {
-        jDialog = new JDialog(this,"Patient " + uniqId.getNom());
+    private void buildDialogFichePersonnel(UniqId uniqId,Data personnelData) {
+        jDialog = new JDialog(this,"Personnel " + uniqId.getNom());
         jDialog.setBounds(400, 300,300,300);
         jDialog.setLayout(null);
         jDialog.setVisible(true);
@@ -160,7 +160,7 @@ public class UserInterface extends JFrame {
         JLabel jLabelNom = new JLabel("Nom");
         jLabelNom.setBounds(10,10,100,25);
         jDialog.add(jLabelNom);
-        String nom = (String) patientData.getValueOfkey("nom");
+        String nom = (String) personnelData.getValueOfkey("nom");
         JLabel jLabelNomAffichage = new JLabel(nom);
         jLabelNomAffichage.setBounds(10,30,100,25);
         jDialog.add(jLabelNomAffichage);
@@ -170,7 +170,7 @@ public class UserInterface extends JFrame {
         jLabelEmploi.setBounds(10,60,100,25);
         jDialog.add(jLabelEmploi);
 
-        Emploie emploi = (Emploie) patientData.getValueOfkey("emploie");
+        Emploie emploi = (Emploie) personnelData.getValueOfkey("emploie");
         JLabel jLabelEmploiAffichage = new JLabel(emploi.toString().toLowerCase());
         jLabelEmploiAffichage.setBounds(10,80,100,25);
         jDialog.add(jLabelEmploiAffichage);
